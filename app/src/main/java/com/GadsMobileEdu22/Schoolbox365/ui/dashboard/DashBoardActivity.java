@@ -6,16 +6,21 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 
 import com.GadsMobileEdu22.Schoolbox365.R;
+import com.GadsMobileEdu22.Schoolbox365.databinding.ActivityDashBoardBinding;
 
 public class DashBoardActivity extends AppCompatActivity {
 
     private DashBoardViewModel viewModel;
 
+    private ActivityDashBoardBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
+       binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
 
         viewModel = new ViewModelProvider(this).get(DashBoardViewModel.class);
+
+        setContentView(binding.getRoot());
     }
 }
