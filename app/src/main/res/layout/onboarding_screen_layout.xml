@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/onboard_skip_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/close_sign"
+        android:text="@string/onboard_skip_btn_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/onboard_illus_imgvw"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="@string/onboarding_illustration_content_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/onboard_students" />
+
+    <TextView
+        android:id="@+id/onboard_title_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:text="Onboarding Screen Title"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onboard_illus_imgvw" />
+
+    <TextView
+        android:id="@+id/onboard_msg_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Receive news, announcements from school and lecturers in real time. \n\n Stay up to date with all school activities like assignments and lectures."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onboard_title_tv"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <Button
+        android:id="@+id/onboard_next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/arrow_forward"
+        android:text="@string/onboard_next_btn_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/onboard_dot3_imgvw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/onboard_dot1_imgvw" />
+
+    <ImageButton
+        android:id="@+id/onboard_dot1_imgvw"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/dot_indicator_content_desc"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/onboard_dot2_imgvw"
+        app:srcCompat="@drawable/dot_indicator_filled" />
+
+    <ImageButton
+        android:id="@+id/onboard_dot2_imgvw"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/dot_indicator_content_desc"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/onboard_dot3_imgvw"
+        app:layout_constraintStart_toEndOf="@+id/onboard_dot1_imgvw"
+        app:layout_constraintTop_toTopOf="@+id/onboard_dot3_imgvw"
+        app:srcCompat="@drawable/dot_indicator" />
+
+    <ImageButton
+        android:id="@+id/onboard_dot3_imgvw"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/dot_indicator_content_desc"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/onboard_dot2_imgvw"
+        app:layout_constraintStart_toEndOf="@+id/onboard_dot2_imgvw"
+        app:srcCompat="@drawable/dot_indicator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

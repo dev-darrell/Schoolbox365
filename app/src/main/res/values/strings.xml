@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Schoolbox365</string>
+    <string name="dot_indicator_content_desc">Dot indicator to track screen position.</string>
+    <string name="onboarding_illustration_content_desc">Artistic illustration for onboarding screen</string>
+    <string name="onboard_skip_btn_text">Skip</string>
+    <string name="onboard_next_btn_text">Next</string>
+    <string name="onboard_screen1_title">Placeholder title</string>
+    <string name="onboard_screen1_message">Placeholder text</string>
+    <string name="onboard_screen2_title">Placeholder title</string>
+    <string name="onboard_screen2_message">Placeholder message</string>
+    <string name="onboard_screen3_title">Placeholder title</string>
+    <string name="onboard_screen3_message">Placeholder message</string>
+    <string name="onboard_next_btn_text_done">Done</string>
 </resources>
