@@ -19,7 +19,6 @@ import com.GadsMobileEdu22.Schoolbox365.R;
 import com.GadsMobileEdu22.Schoolbox365.databinding.OnboardingScreenLayoutBinding;
 import com.GadsMobileEdu22.Schoolbox365.storage.SharedPreferenceStorage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.GadsMobileEdu22.Schoolbox365.ui.onboarding.OnBoardingActivity.mViewPager;
