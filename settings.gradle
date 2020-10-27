@@ -1,3 +1,4 @@
+include ':lectures'
 include ':students'
 include ':admin'
 include ':app'
