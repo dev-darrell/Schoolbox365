@@ -11,4 +11,10 @@
     <string name="onboard_screen3_title">Manage Staff and Students All In One Place</string>
     <string name="onboard_screen3_message">Keep staff and student records close to you and instantly post school-wide announcements.</string>
     <string name="onboard_next_btn_text_done">Done</string>
+    <string name="login_illus_content_desc">Artistic illustration for login page</string>
+    <string name="reg_no_edit_text_hint">Registration No.</string>
+    <string name="password_edit_text_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_subheading">Please sign in to continue</string>
 </resources>
