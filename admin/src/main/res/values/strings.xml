@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">admin</string>
+    <string name="create_new_user_title">Create New User</string>
+    <string name="new_user_fill_out_form_subhead">Please fill out the form below</string>
+    <string name="lecturer_radio_btn">Lecturer</string>
+    <string name="student_radio_btn">Student</string>
+    <string name="new_user_first_name">First Name</string>
+    <string name="new_user_last_name">Last Name</string>
+    <string name="new_user_email">Email</string>
+    <string name="new_user_faculty">Faculty of User</string>
+    <string name="new_user_department">Department of User</string>
+    <string name="new_student_program_of_study">Program of Study</string>
+    <string name="new_lecturer_courses_taught">Courses Taught (Comma Separated)</string>
+    <string name="new_user_male_radio_btn">Male</string>
+    <string name="new_user_female_radio_btn">Female</string>
+    <string name="create_user">Create User</string>
 </resources>
