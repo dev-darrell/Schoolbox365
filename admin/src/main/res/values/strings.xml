@@ -16,4 +16,7 @@
     <string name="create_user">Create User</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboard_send_announcement">Send Announcement</string>
+    <string name="dashboard_card_users">Users</string>
+    <string name="dashboard_card_resources">Resources</string>
 </resources>
