@@ -17,4 +17,7 @@
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login_subheading">Please sign in to continue</string>
+    <string name="wromg_email_format">Email format is wrong</string>
+    <string name="wrong_email">Email is wrong</string>
+    <string name="error_too_short_password">Password is too short</string>
 </resources>

@@ -14,4 +14,6 @@
     <string name="new_user_male_radio_btn">Male</string>
     <string name="new_user_female_radio_btn">Female</string>
     <string name="create_user">Create User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

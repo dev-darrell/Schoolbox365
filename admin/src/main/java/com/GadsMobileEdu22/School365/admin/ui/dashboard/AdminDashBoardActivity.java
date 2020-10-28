@@ -6,14 +6,14 @@ import android.os.Bundle;
 
 import com.GadsMobileEdu22.School365.admin.R;
 
-public class LecturersDashboardActivity extends AppCompatActivity {
+public class AdminDashBoardActivity extends AppCompatActivity {
 
-    private LecturesViewModel viewModel;
+    private AdminViewModel viewModel;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lecturers_dashboard);
+        setContentView(R.layout.activity_admin_dashboard);
     }
 }
