@@ -6,13 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color"
-        tools:context=".ui.auth.RegisterUserFragment">
+        tools:context=".ui.auth.RegisterNewUserFragment">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView"
@@ -86,6 +85,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/first_name_edtxt"
+                    android:padding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit_text_shape"
@@ -111,8 +111,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/last_name_edtxt"
+                    android:padding="8dp"
+                    android:drawableStart="@drawable/ic_person_outline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawablePadding="12dp"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/new_user_last_name"
                     android:inputType="textPersonName"
@@ -125,7 +128,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 app:boxBackgroundMode="none"
                 android:textColorHint="#ffffff"
@@ -134,6 +137,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/first_name_txt_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:padding="8dp"
                     android:id="@+id/email_edtxt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -145,23 +149,50 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_txtlayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:boxBackgroundMode="none"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_txtlayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:padding="8dp"
+                    android:id="@+id/password_edtxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_shape"
+                    android:drawableStart="@drawable/ic_pasword"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/password"
+                    android:inputType="textWebEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user_faculty_txtlayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
 
                 app:boxBackgroundMode="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/email_txtlayout">
+                app:layout_constraintTop_toBottomOf="@+id/password_txtlayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_faculty_edtxt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit_text_shape"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:hint="@string/new_user_faculty"
                     android:inputType="textShortMessage" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -171,7 +202,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:textColorHint="#ffffff"
                 app:boxBackgroundMode="none"
@@ -185,6 +216,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/new_user_department"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:inputType="textShortMessage" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,7 +226,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:textColorHint="#ffffff"
                 app:boxBackgroundMode="none"
@@ -207,6 +240,8 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/new_student_program_of_study"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:inputType="textShortMessage" />
             </com.google.android.material.textfield.TextInputLayout>
 
