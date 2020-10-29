@@ -1,6 +1,5 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.auth
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -10,7 +9,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.GadsMobileEdu22.Schoolbox365.admin.R
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.RegisterNewUserFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import om.GadsMobileEdu22.Schoolbox365.core.data.User
