@@ -1,5 +1,6 @@
-include ':lectures'
-include ':students'
+include ':core'
 include ':admin'
+include ':students'
+include ':lecturers'
 include ':app'
 rootProject.name = "Schoolbox365"
