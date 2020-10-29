@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -56,10 +57,9 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:textColorHint="#ffffff"
-            app:boxBackgroundMode="none"
+            app:boxBackgroundMode="outline"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_subhead_tv">
 
@@ -71,7 +71,7 @@
                 android:drawableStart="@drawable/ic_reg_no"
                 android:drawablePadding="12dp"
                 android:hint="@string/reg_no_edit_text_hint"
-                android:inputType="textShortMessage"
+                android:inputType="textEmailAddress"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +83,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:textColorHint="#ffffff"
-            app:boxBackgroundMode="none"
+            app:boxBackgroundMode="outline"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,5 +127,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+        <com.victor.loading.rotate.RotateLoading
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/login_btn"
+            app:layout_constraintEnd_toEndOf="@+id/login_btn"
+            app:layout_constraintStart_toStartOf="@+id/login_btn"
+            app:layout_constraintTop_toTopOf="@+id/login_btn"
+            app:loading_color="@color/colorPrimary"
+            app:loading_width="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

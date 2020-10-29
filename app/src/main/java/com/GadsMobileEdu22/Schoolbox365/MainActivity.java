@@ -1,12 +1,19 @@
 package com.GadsMobileEdu22.Schoolbox365;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.AdminDashBoardActivity;
 import com.GadsMobileEdu22.Schoolbox365.databinding.ActivityMainBinding;
+import com.GadsMobileEdu22.Schoolbox365.lecturers.ui.dashboard.LecturersDashBoardActivity;
+import com.GadsMobileEdu22.Schoolbox365.students.ui.dashboard.StudentsDashBoardActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -29,33 +36,50 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.getUser().observe(this, user ->{
             if (user != null){
+                navigate();
+            }
+        });
 
-//                navigate();
-
+        viewModel.getProgress().observe(this, authenticationProgress -> {
+            switch (authenticationProgress){
+                case Loading:
+                    binding.loginBtn.setVisibility(View.GONE);
+                    binding.progressBar.start();
+                    break;
+                case Done:
+                    binding.loginBtn.setVisibility(View.VISIBLE);
+                    binding.progressBar.stop();
+                    break;
+                case AuthError:
+                    binding.progressBar.stop();
+                    binding.loginBtn.setVisibility(View.VISIBLE);
+                    viewModel.getMessage().observe(this, message -> Snackbar.make(binding.getRoot(), message,Snackbar.LENGTH_LONG).show());
 
 
             }
         });
+        setContentView(binding.getRoot());
     }
 
-//    private void navigate() {
-//        viewModel.getCurrentUser().observe(this, currentUser ->{
-//            if (currentUser != null) {
-//                if (currentUser.getUserType().equals("Student")) {
-//                    Intent intent = new Intent(this, StudentsDashBoardActivity.class);
-//                    startActivity(intent);
-//                }  else if (currentUser.getUserType().equals("lecturers")) {
-//                    Intent intent = new Intent(this, StudentsDashBoardActivity.class);
-//                    startActivity(intent);
-//                }
-//                else if (currentUser.getUserType().equals("admin")) {
-//                    Intent intent = new Intent(this, AdminDashBoardActivity.class);
-//                    startActivity(intent);
-//                }
-//
-//            }
-//        });
-//    }
+    private void navigate() {
+        viewModel.getCurrentUser().observe(this, currentUser ->{
+            if (currentUser != null) {
+                if (currentUser.getUserType().equals("Student")) {
+                    Snackbar.make(binding.getRoot(),"Welcome " + currentUser.getName(),Snackbar.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, StudentsDashBoardActivity.class);
+                    startActivity(intent);
+                }  else if (currentUser.getUserType().equals("lecturers")) {
+                    Intent intent = new Intent(this, LecturersDashBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if (currentUser.getUserType().equals("admin")) {
+                    Intent intent = new Intent(this, AdminDashBoardActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+    }
 
     private boolean valid() {
         if (binding.regNoEditTxt.getText() != null){

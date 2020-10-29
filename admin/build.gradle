@@ -46,6 +46,9 @@ dependencies {
 
     implementation project(':core')
 
+    // Progress Bar
+    implementation 'com.victor:lib:1.0.4'
+
     //materialDesign
     implementation 'com.google.android.material:material:1.2.1'
 

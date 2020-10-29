@@ -12,9 +12,9 @@ data class User(
 
 )
 
-  sealed class AuthenticationProgress {
-      object Loading : AuthenticationProgress()
-      object Done : AuthenticationProgress()
-      data class Error(var message: String?) : AuthenticationProgress()
+  enum class AuthenticationProgress {
+       Loading ,
+       Done ,
+       AuthError
   }
 
