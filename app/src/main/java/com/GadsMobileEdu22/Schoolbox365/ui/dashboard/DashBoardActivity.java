@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import com.GadsMobileEdu22.Schoolbox365.R;
+import com.GadsMobileEdu22.School365.admin.ui.dashboard.ui.dashboard.AdminDashBoardActivity;
 import com.GadsMobileEdu22.Schoolbox365.databinding.ActivityDashBoardBinding;
 
 public class DashBoardActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class DashBoardActivity extends AppCompatActivity {
        binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
 
         viewModel = new ViewModelProvider(this).get(DashBoardViewModel.class);
-
         setContentView(binding.getRoot());
+
     }
 }
