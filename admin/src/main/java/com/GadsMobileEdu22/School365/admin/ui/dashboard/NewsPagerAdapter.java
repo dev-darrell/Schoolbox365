@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.GadsMobileEdu22.School365.admin.R;
-import com.GadsMobileEdu22.School365.admin.databinding.DashboardNewsItemBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.R;
+import com.GadsMobileEdu22.Schoolbox365.admin.databinding.DashboardNewsItemBinding;
 
 import java.util.List;
 
@@ -47,13 +47,14 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
         private ImageView newsIllustration;
         private TextView newsHeading;
         private OnNewsClickListener onNewsClickListener;
+        private final DashboardNewsItemBinding mBinding;
 
         public MyPagerViewHolder(@NonNull View itemView, OnNewsClickListener onNewsClickListener) {
             super(itemView);
-            DashboardNewsItemBinding binding = new DashboardNewsItemBinding();
+            mBinding = DashboardNewsItemBinding.bind(itemView);
 
-            newsIllustration = binding.newsIllusImgvw;
-            newsHeading = binding.newsHeadingTv;
+            newsIllustration = mBinding.newsIllusImgvw;
+            newsHeading = mBinding.newsHeadingTv;
             this.onNewsClickListener = onNewsClickListener;
 
             itemView.setOnClickListener(this);
@@ -63,6 +64,11 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
             NewsItem currentItem = newsItems.get(position);
             newsIllustration.setImageResource(currentItem.getNewsImage());
             newsHeading.setText(currentItem.getHeading());
+            mBinding.dotIndicator1.setImageResource(currentItem.getDot1());
+            mBinding.dotIndicator2.setImageResource(currentItem.getDot2());
+            mBinding.dotIndicator3.setImageResource(currentItem.getDot3());
+            mBinding.dotIndicator4.setImageResource(currentItem.getDot4());
+            mBinding.dotIndicator5.setImageResource(currentItem.getDot5());
         }
 
         @Override

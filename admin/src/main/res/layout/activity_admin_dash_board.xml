@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.AdminDashBoardActivity"
-    android:background="@color/background_color">
+    android:background="@color/background_color_light">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -15,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/dashboard_menu"
         app:navGraph="@navigation/admin_navigation">
 
         <ImageView
+            android:id="@+id/toolbar_user_imgvw"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_margin="8dp"
@@ -26,6 +26,7 @@
             android:src="@drawable/onboard_admin" />
 
         <TextView
+            android:id="@+id/toolbar_welcome_user_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"

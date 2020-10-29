@@ -1,8 +1,11 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.GadsMobileEdu22.School365.admin.ui.dashboard.DashboardFragment;
 import com.GadsMobileEdu22.School365.admin.ui.dashboard.MenuFragment;
@@ -24,6 +27,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         ActivityAdminDashBoardBinding binding = ActivityAdminDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 DashboardFragment.class, null).commit();
@@ -32,23 +36,33 @@ public class AdminDashBoardActivity extends AppCompatActivity {
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
-        switch (item.getItemId()){
-            case R.id.nav_search:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, SearchFragment.class, null)
-                .commit();
-            break;
-            case R.id.nav_home:
+        if (item.getItemId() == R.id.nav_search) {
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.fragment_container, SearchFragment.class, null)
+                    .commit();
+        } else if (item.getItemId() == R.id.nav_home) {
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.fragment_container, DashboardFragment.class, null)
                         .commit();
-                break;
-            case R.id.nav_menu:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, MenuFragment.class, null)
-                        .commit();
-                break;
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.fragment_container, MenuFragment.class, null)
+                    .commit();
         }
         return true;
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.dashboard_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.select_course_menu_item){
+//            TODO: Add functionality for switching courses.
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

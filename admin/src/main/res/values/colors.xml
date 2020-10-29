@@ -7,4 +7,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_color">#9A000000</color>
     <color name="background_color_light">#33000000</color>
+    <color name="bg">#CCC8C8</color>
 </resources>

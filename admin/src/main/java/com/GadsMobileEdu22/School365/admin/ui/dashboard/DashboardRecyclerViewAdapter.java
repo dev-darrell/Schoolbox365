@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.GadsMobileEdu22.School365.admin.R;
-import com.GadsMobileEdu22.School365.admin.databinding.DashboardRecyclerItemBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.R;
+import com.GadsMobileEdu22.Schoolbox365.admin.databinding.DashboardRecyclerItemBinding;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class DashboardRecyclerViewAdapter extends
 
         public MyRecyclerViewHolder(@NonNull View itemView, OnDashBoardClickListener onDashBoardClickListener) {
             super(itemView);
-            DashboardRecyclerItemBinding binding = new DashboardRecyclerItemBinding();
+            DashboardRecyclerItemBinding binding = DashboardRecyclerItemBinding.bind(itemView);
             illustration = binding.dashboardCardIllusImgvw;
             headingText = binding.dashboardCardTextTv;
             this.onDashBoardClickListener = onDashBoardClickListener;

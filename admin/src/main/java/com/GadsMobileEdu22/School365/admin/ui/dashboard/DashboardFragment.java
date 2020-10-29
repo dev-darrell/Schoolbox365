@@ -10,8 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.GadsMobileEdu22.School365.admin.databinding.FragmentDashboardBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.AdminDashBoardActivity;
 
 import java.util.List;
 

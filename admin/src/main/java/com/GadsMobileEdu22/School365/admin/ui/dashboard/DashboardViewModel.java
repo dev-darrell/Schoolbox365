@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.GadsMobileEdu22.School365.admin.R;
+import com.GadsMobileEdu22.Schoolbox365.admin.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class DashboardViewModel extends ViewModel {
     public LiveData<List<DashboardItem>> dashboardItems = _dashList;
     public LiveData<List<NewsItem>> newsItems = _newsList;
 
-    DashboardViewModel() {
+    public DashboardViewModel() {
         _dashList.setValue(addDashboardItems());
 
         _newsList.setValue(addNewsItems());
@@ -23,10 +23,13 @@ public class DashboardViewModel extends ViewModel {
 
     private List<NewsItem> addNewsItems() {
         ArrayList<NewsItem> items = new ArrayList<>();
-        items.add(new NewsItem(R.drawable.onboard_admin, "Dummy News Item",
+//        TODO: Add news items received from firebase to the 'items' ArrayList.
+//        Item id represents which dot will be selected. Only 5 dots are available (i.e. IDs 1-5)
+        items.add(new NewsItem(1, R.drawable.onboard_admin, "Dummy News Item",
+                "Further dummy text."));
+        items.add(new NewsItem(2, R.drawable.onboard_admin, "Second Dummy News Item",
                 "Further dummy text."));
 
-//        TODO: Add news items received from firebase to the 'items' ArrayList.
         return items;
     }
 

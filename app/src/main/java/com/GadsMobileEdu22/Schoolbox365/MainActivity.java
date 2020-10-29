@@ -9,7 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.ui.dashboard.AdminDashBoardActivity;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.AdminDashBoardActivity;
 import com.GadsMobileEdu22.Schoolbox365.databinding.ActivityMainBinding;
 import com.GadsMobileEdu22.Schoolbox365.lecturers.ui.dashboard.LecturersDashBoardActivity;
 import com.GadsMobileEdu22.Schoolbox365.students.ui.dashboard.StudentsDashBoardActivity;
@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
+        binding.openAdminBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AdminDashBoardActivity.class);
+            startActivity(intent);
+        });
 
         binding.loginBtn.setOnClickListener(v -> {
             if (valid()){

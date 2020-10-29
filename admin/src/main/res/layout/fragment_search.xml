@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.GadsMobileEdu22.School365.admin.ui.dashboard.ui.dashboard.SearchFragment"
-    android:background="@color/background_color">
+    tools:context="com.GadsMobileEdu22.School365.admin.ui.dashboard.SearchFragment"
+    android:background="@color/bg">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

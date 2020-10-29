@@ -4,23 +4,23 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color">
+    android:background="@color/bg">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/news_vpager2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@id/welcome_note_tv"
+        app:layout_constraintBottom_toTopOf="@id/welcome_user_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/welcome_note_tv"
+        android:id="@+id/welcome_user_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_bold"
         android:text="Welcome Mr. John"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -33,17 +33,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboard_recyclervw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/white"
+        android:background="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_note_tv"
+        app:layout_constraintTop_toBottomOf="@id/welcome_user_tv"
         tools:listitem="@layout/dashboard_recycler_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

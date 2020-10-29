@@ -8,8 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.GadsMobileEdu22.School365.admin.R;
-import com.GadsMobileEdu22.School365.admin.databinding.FragmentSearchBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
 

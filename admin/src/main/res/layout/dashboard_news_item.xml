@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_item_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/news_illus_imgvw"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,23 +19,26 @@
 
     <TextView
         android:id="@+id/news_heading_tv"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:fontFamily="@font/roboto"
+        android:background="@color/background_color"
         android:text="Lorem ipsum dolor sit amet, consectetuer adpiscing elit. Aebeab commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <ImageView
         android:id="@+id/dot_indicator1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/dot_indicator2"
         app:layout_constraintEnd_toStartOf="@+id/dot_indicator2"
@@ -43,8 +46,8 @@
 
     <ImageView
         android:id="@+id/dot_indicator2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/dot_indicator3"
         app:layout_constraintEnd_toStartOf="@+id/dot_indicator3"
@@ -52,9 +55,9 @@
 
     <ImageView
         android:id="@+id/dot_indicator3"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,8 +65,8 @@
 
     <ImageView
         android:id="@+id/dot_indicator4"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/dot_indicator3"
         app:layout_constraintStart_toEndOf="@+id/dot_indicator3"
@@ -71,8 +74,8 @@
 
     <ImageView
         android:id="@+id/dot_indicator5"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/dot_indicator4"
         app:layout_constraintStart_toEndOf="@+id/dot_indicator4"

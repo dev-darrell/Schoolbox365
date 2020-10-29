@@ -48,6 +48,7 @@ dependencies {
 
     //materialDesign
     implementation 'com.google.android.material:material:1.2.1'
+    implementation project(path: ':students')
 
     //testing
     testImplementation 'junit:junit:4.13.1'

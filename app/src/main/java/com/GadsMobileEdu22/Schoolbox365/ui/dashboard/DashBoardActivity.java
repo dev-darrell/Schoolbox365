@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.ui.dashboard.AdminDashBoardActivity;
 import com.GadsMobileEdu22.Schoolbox365.databinding.ActivityDashBoardBinding;
 
 public class DashBoardActivity extends AppCompatActivity {
