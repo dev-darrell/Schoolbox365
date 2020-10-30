@@ -1,5 +1,6 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBindi
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.DashboardRecyclerViewAdapter;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.NewsPagerAdapter;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsListFragment;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.storage.UploadResourceActivity;
 
 import java.util.List;
 
@@ -62,6 +64,8 @@ public class    DashboardFragment extends Fragment
                 break;
             case 2:
 //              TODO: Open Upload Resources Activity/Fragment
+                Intent intent = new Intent(getContext(), UploadResourceActivity.class);
+                startActivity(intent);
                 break;
         }
     }
