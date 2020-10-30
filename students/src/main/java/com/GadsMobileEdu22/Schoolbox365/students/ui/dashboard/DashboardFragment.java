@@ -1,9 +1,6 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.students.ui.dashboard;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,23 +8,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBinding;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+
+import com.GadsMobileEdu22.Schoolbox365.students.databinding.FragmentDashboardBinding;
 
 import java.util.List;
 
-public class DashboardFragment extends Fragment
-        implements DashboardRecyclerViewAdapter.OnDashBoardClickListener,
+public class DashboardFragment extends Fragment implements DashboardRecyclerViewAdapter.OnDashBoardClickListener,
         NewsPagerAdapter.OnNewsClickListener {
 
     private DashboardViewModel mViewModel;
     private FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         mBinding = FragmentDashboardBinding.inflate(inflater);
+
         return mBinding.getRoot();
     }
 

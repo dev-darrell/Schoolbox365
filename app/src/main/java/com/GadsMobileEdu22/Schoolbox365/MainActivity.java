@@ -26,10 +26,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        binding.openAdminBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AdminDashBoardActivity.class);
-            startActivity(intent);
-        });
+        openOtherDashboards();
 
         binding.loginBtn.setOnClickListener(v -> {
             if (valid()){
@@ -63,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+    }
+
+    private void openOtherDashboards() {
+        binding.openAdminBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AdminDashBoardActivity.class);
+            startActivity(intent);
+        });
+
+        binding.openStudentsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, StudentsDashBoardActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void navigate() {

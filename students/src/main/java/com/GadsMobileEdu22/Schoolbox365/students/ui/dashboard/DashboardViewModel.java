@@ -1,10 +1,10 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.students.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.GadsMobileEdu22.Schoolbox365.admin.R;
+import com.GadsMobileEdu22.Schoolbox365.students.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +25,9 @@ public class DashboardViewModel extends ViewModel {
         ArrayList<NewsItem> items = new ArrayList<>();
 //        TODO: Add news items received from firebase to the 'items' ArrayList.
 //        Item id represents which dot will be selected. Only 5 dots are available (i.e. IDs 1-5)
-        items.add(new NewsItem(1, R.drawable.onboard_admin, "Dummy News Item",
+        items.add(new NewsItem(1, R.drawable.illus_assignment, "Dummy News Item",
                 "Further dummy text."));
-        items.add(new NewsItem(2, R.drawable.onboard_admin, "Second Dummy News Item",
+        items.add(new NewsItem(2, R.drawable.illus_assignment, "Second Dummy News Item",
                 "Further dummy text."));
 
         return items;
@@ -35,8 +35,8 @@ public class DashboardViewModel extends ViewModel {
 
     private ArrayList<DashboardItem> addDashboardItems() {
         ArrayList<DashboardItem> items = new ArrayList<>();
-        items.add(0, new DashboardItem(R.drawable.illus_news, R.string.dashboard_send_announcement));
-        items.add(1, new DashboardItem(R.drawable.illus_users, R.string.dashboard_card_users));
+        items.add(0, new DashboardItem(R.drawable.illus_lectures, R.string.dashboard_card_lectures));
+        items.add(1, new DashboardItem(R.drawable.illus_assignment, R.string.dashboard_card_assignments));
         items.add(2, new DashboardItem(R.drawable.illus_resources, R.string.dashboard_card_resources));
         return items;
     }
