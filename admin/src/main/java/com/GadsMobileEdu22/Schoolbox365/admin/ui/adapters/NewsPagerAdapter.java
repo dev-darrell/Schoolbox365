@@ -1,6 +1,5 @@
-package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.DashboardNewsItemBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.NewsItem;
 
 import java.util.List;
 
 public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPagerViewHolder> {
 
-    private Context context;
-    private List<NewsItem> newsItems;
-    private OnNewsClickListener onNewsClickListener;
-    public NewsPagerAdapter(Context context, List<NewsItem> newsItems, OnNewsClickListener onNewsClickListener) {
-        this.context = context;
+    private final List<NewsItem> newsItems;
+    private final OnNewsClickListener onNewsClickListener;
+    public NewsPagerAdapter( List<NewsItem> newsItems, OnNewsClickListener onNewsClickListener) {
+
         this.newsItems = newsItems;
         this.onNewsClickListener = onNewsClickListener;
     }
@@ -29,7 +28,7 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
     @NonNull
     @Override
     public MyPagerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.dashboard_news_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_news_item, parent, false);
         return new MyPagerViewHolder(view, onNewsClickListener);
     }
 
@@ -44,9 +43,9 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
     }
 
     public class MyPagerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView newsIllustration;
-        private TextView newsHeading;
-        private OnNewsClickListener onNewsClickListener;
+        private final ImageView newsIllustration;
+        private final TextView newsHeading;
+        private final OnNewsClickListener onNewsClickListener;
         private final DashboardNewsItemBinding mBinding;
 
         public MyPagerViewHolder(@NonNull View itemView, OnNewsClickListener onNewsClickListener) {

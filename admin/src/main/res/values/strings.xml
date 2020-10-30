@@ -26,4 +26,7 @@
     <string name="user_profile_image">User profile image</string>
     <string name="add_news_button">Add news button</string>
     <string name="news_image">News Image</string>
+    <string name="tittle">Tittle</string>
+    <string name="save_news">Save News</string>
+    <string name="description">Description</string>
 </resources>

@@ -11,7 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.DashboardRecyclerViewAdapter;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.NewsPagerAdapter;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsListFragment;
 
 import java.util.List;
 
@@ -28,25 +32,20 @@ public class    DashboardFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentDashboardBinding.inflate(inflater);
+        mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-
         mBinding.dashboardRecyclervw.setLayoutManager(new GridLayoutManager(getContext(),
                 2));
 
-        mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems -> {
-            mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(getContext(),
-                    dashboardItems, this));
-        });
+        mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems -> mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(dashboardItems, this)));
         mViewModel.newsItems.observe(getViewLifecycleOwner(), newsItems -> {
             mNewsItems = newsItems;
-            mBinding.newsVpager2.setAdapter(new NewsPagerAdapter(getContext(),
-                    newsItems, this));
+            mBinding.newsVpager2.setAdapter(new NewsPagerAdapter(newsItems, this));
         });
     }
 
@@ -55,7 +54,8 @@ public class    DashboardFragment extends Fragment
         switch (position) {
             case 0:
 //              TODO: Open News/Announcements Activity or Fragment
-
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        NewsListFragment.class, null).commit();
                 break;
             case 1:
 //              TODO: Open Users Activity/Fragment
