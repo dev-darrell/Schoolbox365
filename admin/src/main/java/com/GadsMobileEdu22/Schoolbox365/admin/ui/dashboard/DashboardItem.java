@@ -1,4 +1,4 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
 public class DashboardItem {
     private int itemIllustrationRes;

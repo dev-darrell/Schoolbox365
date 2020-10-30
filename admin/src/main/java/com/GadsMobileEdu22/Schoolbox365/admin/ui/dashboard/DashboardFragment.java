@@ -1,4 +1,4 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,14 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBinding;
-import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.AdminDashBoardActivity;
 
 import java.util.List;
 
-public class DashboardFragment extends Fragment
+public class    DashboardFragment extends Fragment
         implements DashboardRecyclerViewAdapter.OnDashBoardClickListener,
         NewsPagerAdapter.OnNewsClickListener {
 
@@ -57,6 +55,7 @@ public class DashboardFragment extends Fragment
         switch (position) {
             case 0:
 //              TODO: Open News/Announcements Activity or Fragment
+
                 break;
             case 1:
 //              TODO: Open Users Activity/Fragment

@@ -2,9 +2,12 @@ package com.GadsMobileEdu22.Schoolbox365;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
 import androidx.viewbinding.BuildConfig;
 
 import com.GadsMobileEdu22.Schoolbox365.storage.SharedPreferenceStorage;
+
+import org.jetbrains.annotations.NotNull;
 
 import timber.log.Timber;
 
@@ -22,6 +25,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // Init sharedPreference
+
         new SharedPreferenceStorage(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());

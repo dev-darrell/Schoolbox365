@@ -47,11 +47,11 @@ class MainActivityViewModel : ViewModel() {
                     user?.let {
                         usersList.add(user)
                     }
-
-                    val authUserId = FirebaseAuth.getInstance().currentUser?.uid
-
-                    _currentUser.value = usersList.single { v: User -> v.userId == authUserId }
                 }
+
+                val authUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+                _currentUser.value = usersList.single { v: User -> v.userId == authUserId }
             }
 
             override fun onCancelled(error: DatabaseError) {

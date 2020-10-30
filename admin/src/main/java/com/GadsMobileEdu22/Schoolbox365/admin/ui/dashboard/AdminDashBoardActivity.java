@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.DashboardFragment;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.MenuFragment;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.NewsItem;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.SearchFragment;
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.ActivityAdminDashBoardBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.menu.MenuFragment;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;

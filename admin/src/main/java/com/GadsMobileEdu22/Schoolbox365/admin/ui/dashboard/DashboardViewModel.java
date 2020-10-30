@@ -1,4 +1,4 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardViewModel extends ViewModel {
-    private MutableLiveData<List<DashboardItem>> _dashList = new MutableLiveData<>();
-    private MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
+    private final MutableLiveData<List<DashboardItem>> _dashList = new MutableLiveData<>();
+    private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
     public LiveData<List<DashboardItem>> dashboardItems = _dashList;
     public LiveData<List<NewsItem>> newsItems = _newsList;
 
