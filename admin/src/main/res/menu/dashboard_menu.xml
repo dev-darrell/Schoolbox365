@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/select_course_menu_item"
-        android:title="Select Course"
+        android:title="Add New User"
         app:showAsAction="never" />
 </menu>

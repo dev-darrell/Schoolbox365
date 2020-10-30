@@ -1,5 +1,7 @@
 package om.GadsMobileEdu22.Schoolbox365.core.data
 
+import kotlinx.android.parcel.Parcelize
+
 data class User(
         var name: String = "",
         var emailAddress: String = "",
@@ -17,6 +19,7 @@ enum class AuthenticationProgress {
     Done,
     AuthError
 }
+
 
 data class News(
         var id: String = "",

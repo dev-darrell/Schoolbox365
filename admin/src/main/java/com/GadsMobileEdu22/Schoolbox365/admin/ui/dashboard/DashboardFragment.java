@@ -26,6 +26,7 @@ public class    DashboardFragment extends Fragment
     private DashboardViewModel mViewModel;
     private FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
+    String name = getArguments().getString("Name");
 
     @Nullable
     @Override
@@ -33,12 +34,15 @@ public class    DashboardFragment extends Fragment
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentDashboardBinding.inflate(inflater);
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String greet  = "Welcome Mr" + name;
+        mBinding.welcomeUserTv.setText(greet);
         mBinding.dashboardRecyclervw.setLayoutManager(new GridLayoutManager(getContext(),
                 2));
 

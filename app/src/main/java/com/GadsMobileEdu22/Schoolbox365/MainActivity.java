@@ -69,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getCurrentUser().observe(this, currentUser ->{
             if (currentUser != null) {
                 if (currentUser.getUserType().equals("Student")) {
+
                     Snackbar.make(binding.getRoot(),"Welcome " + currentUser.getName(),Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(this, StudentsDashBoardActivity.class);
+                    intent.putExtra("usersName", currentUser.getName());
                     startActivity(intent);
                 }  else if (currentUser.getUserType().equals("lecturers")) {
                     Intent intent = new Intent(this, LecturersDashBoardActivity.class);

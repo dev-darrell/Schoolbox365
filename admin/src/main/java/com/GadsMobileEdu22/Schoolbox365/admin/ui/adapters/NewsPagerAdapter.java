@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.DashboardNewsItemBinding;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.NewsItem;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
 
         public void bindData(int position) {
             NewsItem currentItem = newsItems.get(position);
-            newsIllustration.setImageResource(currentItem.getNewsImage());
+            Glide.with(itemView.getContext()).load(currentItem.getNewsImage()).into(newsIllustration);
             newsHeading.setText(currentItem.getHeading());
             mBinding.dotIndicator1.setImageResource(currentItem.getDot1());
             mBinding.dotIndicator2.setImageResource(currentItem.getDot2());
