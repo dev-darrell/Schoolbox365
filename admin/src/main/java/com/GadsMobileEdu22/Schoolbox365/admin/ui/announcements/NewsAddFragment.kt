@@ -25,12 +25,13 @@ class NewsAddFragment : Fragment() {
     private lateinit var binding: FragmentNewsAddBinding
     private lateinit var mBitmap: Bitmap
     private lateinit var imagePath: String
+    private var imageIsChosen: Boolean = false
 
-    private val startActivityForResult =  registerForActivityResult(StartActivityForResult()){ result ->
-        if (result.resultCode == RESULT_OK){
+    private val startActivityForResult = registerForActivityResult(StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
             val uri: Uri = result.data?.data!!
             Toast.makeText(
-                    requireParentFragment().context,
+                    context,
                     "Image Selected",
                     Toast.LENGTH_SHORT
             )
@@ -41,18 +42,17 @@ class NewsAddFragment : Fragment() {
                     val source: ImageDecoder.Source =
                             ImageDecoder.createSource(requireActivity().contentResolver, uri)
                     mBitmap = ImageDecoder.decodeBitmap(source)
-//                    viewModel.uploadItems.setImageBitmap(mBitmap)
+                    viewModel.setImageBitmap(mBitmap)
+                    imageIsChosen = true
                     Glide.with(requireContext()).load(uri).into(binding.imagePreview)
-                }
-                else {
+                } else {
                     mBitmap = Media.getBitmap(requireActivity().contentResolver, uri)
                     // Load image using Glide
-//                    viewModel.uploadItems.setImageBitmap(mBitmap)
+                    viewModel.setImageBitmap(mBitmap)
                     Glide.with(requireContext()).load(mBitmap).into(binding.imagePreview)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-
             }
         }
 
@@ -70,19 +70,24 @@ class NewsAddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val news = News(tittle = binding.etTittle.text.toString(),
-                description = binding.etDesc.text.toString())
+        binding.materialButton.setOnClickListener {
+            if (imageIsChosen) {
+                val news = News(tittle = binding.etTittle.text.toString(),
+                        description = binding.etDesc.text.toString())
 
-        viewModel.uploadNews(news)
+                viewModel.uploadNews(news)
 
+                Toast.makeText(context, viewModel.message.value, Toast.LENGTH_SHORT).show()
+                activity?.onBackPressed()
+            } else {
+                Toast.makeText(context, "Select cover image", Toast.LENGTH_LONG).show()
+            }
+        }
         binding.imageAdd.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
 
             startActivityForResult.launch(intent)
         }
-
     }
-
-
 }

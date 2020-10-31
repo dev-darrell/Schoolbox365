@@ -18,19 +18,30 @@ public class AdminDashBoardActivity extends AppCompatActivity {
 
 //    private List<NewsItem> newsItems;
 
-    private final String name = getIntent().getStringExtra("usersName");
+    private String name;
+    private Bundle mDashboardBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityAdminDashBoardBinding binding = ActivityAdminDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (getIntent().hasExtra("usersName")) {
+            name = getIntent().getStringExtra("usersName");
+        } else {
+            name = "";
+        }
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setTitle("welcome Mr " + name);
+        getSupportActionBar().setTitle("Welcome Mr " + name);
+
+
+        mDashboardBundle = new Bundle();
+        mDashboardBundle.putString("Name", name);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                DashboardFragment.class, null).commit();
+                DashboardFragment.class, mDashboardBundle).commit();
         binding.bottomNavView.setSelectedItemId(R.id.nav_home);
         binding.bottomNavView.setOnNavigationItemSelectedListener(navListener);
     }
@@ -41,10 +52,8 @@ public class AdminDashBoardActivity extends AppCompatActivity {
                     R.id.fragment_container, SearchFragment.class, null)
                     .commit();
         } else if (item.getItemId() == R.id.nav_home) {
-            Bundle bundle = new Bundle();
-            bundle.putString("Name", name);
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, DashboardFragment.class, bundle)
+                        R.id.fragment_container, DashboardFragment.class, mDashboardBundle)
                         .commit();
         } else {
             getSupportFragmentManager().beginTransaction().replace(
