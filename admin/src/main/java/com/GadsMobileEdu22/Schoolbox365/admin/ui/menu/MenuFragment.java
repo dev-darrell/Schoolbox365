@@ -1,4 +1,4 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.menu;
 
 import android.os.Bundle;
 
@@ -8,16 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentSearchBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentMenuBinding;
 
-public class SearchFragment extends Fragment {
+public class MenuFragment extends Fragment {
 
-    private FragmentSearchBinding mBinding;
+    private FragmentMenuBinding mBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentSearchBinding.inflate(inflater);
+        mBinding = FragmentMenuBinding.inflate(inflater);
         return mBinding.getRoot();
     }
 }

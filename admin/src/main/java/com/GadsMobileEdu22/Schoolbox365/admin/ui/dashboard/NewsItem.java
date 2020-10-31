@@ -1,22 +1,20 @@
-package com.GadsMobileEdu22.School365.admin.ui.dashboard;
+package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 
-import java.util.UUID;
-
 public class NewsItem {
 
-    private int id;
-    private int newsImage;
-    private String heading;
-    private String fullMessage;
+    private final int id;
+    private final String newsImage;
+    private final String heading;
+    private final String fullMessage;
     private int dot1 = R.drawable.dot_indicator;
     private int dot2 = R.drawable.dot_indicator;
     private int dot3 = R.drawable.dot_indicator;
     private int dot4 = R.drawable.dot_indicator;
     private int dot5 = R.drawable.dot_indicator;
 
-    public NewsItem (int id, int newsImage, String heading, String fullMessage) {
+    public NewsItem (int id, String newsImage, String heading, String fullMessage) {
         this.id = id;
         this.newsImage = newsImage;
         this.heading = heading;
@@ -49,7 +47,7 @@ public class NewsItem {
         return id;
     }
 
-    public int getNewsImage() {
+    public String getNewsImage() {
         return newsImage;
     }
 

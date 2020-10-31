@@ -10,8 +10,7 @@
         android:id="@+id/news_illus_imgvw"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,16 +23,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:background="@color/background_color"
-        android:text="Lorem ipsum dolor sit amet, consectetuer adpiscing elit. Aebeab commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        tools:text="Lorem ipsum dolor sit amet, consectetuer adpiscing elit. Aebeab commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/news_illus_imgvw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintTop_toTopOf="@+id/news_illus_imgvw" />
 
     <ImageView
         android:id="@+id/dot_indicator1"
@@ -57,8 +56,8 @@
         android:id="@+id/dot_indicator3"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/news_illus_imgvw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/dot_indicator" />

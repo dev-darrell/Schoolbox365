@@ -1,25 +1,24 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.DashboardFragment;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.MenuFragment;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.NewsItem;
-import com.GadsMobileEdu22.School365.admin.ui.dashboard.SearchFragment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.ActivityAdminDashBoardBinding;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.auth.RegisterNewUserFragment;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.menu.MenuFragment;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 public class AdminDashBoardActivity extends AppCompatActivity {
 
-    private List<NewsItem> newsItems;
+//    private List<NewsItem> newsItems;
+
+    private final String name = getIntent().getStringExtra("usersName");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +27,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("welcome Mr " + name);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 DashboardFragment.class, null).commit();
@@ -41,8 +41,10 @@ public class AdminDashBoardActivity extends AppCompatActivity {
                     R.id.fragment_container, SearchFragment.class, null)
                     .commit();
         } else if (item.getItemId() == R.id.nav_home) {
+            Bundle bundle = new Bundle();
+            bundle.putString("Name", name);
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, DashboardFragment.class, null)
+                        R.id.fragment_container, DashboardFragment.class, bundle)
                         .commit();
         } else {
             getSupportFragmentManager().beginTransaction().replace(
@@ -61,7 +63,10 @@ public class AdminDashBoardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.select_course_menu_item){
-//            TODO: Add functionality for switching courses.
+           getSupportFragmentManager().beginTransaction().replace(
+                    R.id.fragment_container, RegisterNewUserFragment.class, null)
+                    .commit();
+           return true;
         }
         return super.onOptionsItemSelected(item);
     }
