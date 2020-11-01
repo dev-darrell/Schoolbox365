@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -18,11 +21,18 @@ import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBindi
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.DashboardRecyclerViewAdapter;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.NewsPagerAdapter;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsListFragment;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import om.GadsMobileEdu22.Schoolbox365.core.data.News;
 import timber.log.Timber;
 
 public class    DashboardFragment extends Fragment
@@ -33,6 +43,11 @@ public class    DashboardFragment extends Fragment
     private FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
     String name;
+    private final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("development/news");
+    private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
+    public LiveData<List<NewsItem>> newsItems = _newsList;;
+    private NewsPagerAdapter mPagerAdapter;
+
 
     @Nullable
     @Override
@@ -59,14 +74,57 @@ public class    DashboardFragment extends Fragment
 
 //        TODO: Ensure news items get shown in viewpager.
 
-        mViewModel.newsItems.observe(getViewLifecycleOwner(), newsItems -> {
-            Collections.reverse(mNewsItems);
-            mNewsItems = newsItems;
-            Timber.d("list of view pager %s", mNewsItems.get(1).toString());
-            NewsPagerAdapter pagerAdapter = new NewsPagerAdapter(newsItems, this);
-            pagerAdapter.notifyDataSetChanged();
-            mBinding.newsVpager2.setAdapter(pagerAdapter);
+        getNewsFromDb();
+
+//        this.newsItems.observe(getViewLifecycleOwner(), newsItems1 -> {
+//            Collections.reverse(mNewsItems);
+////            Timber.d("list of view pager %s", mNewsItems.get(0).toString());
+//            mPagerAdapter = new NewsPagerAdapter(mNewsItems, this);
+//            mPagerAdapter.notifyDataSetChanged();
+//            mBinding.newsVpager2.setAdapter(mPagerAdapter);
+//        });
+    }
+
+    private void getNewsFromDb() {
+        List<News> items = new ArrayList<>();
+        List<NewsItem> newsItems = new ArrayList<>();
+//        newsItems.add(new NewsItem(1, String.valueOf(R.drawable.ic_notifications),
+//                "Loading News", ""));
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    News news = dataSnapshot.getValue(News.class);
+                    if (news != null){
+                        items.add(news);
+                    }
+                }
+
+                Collections.reverse(items);
+
+                for (News item : items){
+                    NewsItem newsItem = new NewsItem(items.indexOf(item) + 1, item.getImage(), item.getTittle(),item.getDescription());
+                    if (newsItems.size() <= 4){
+                        newsItems.add(newsItem);
+                    }else {
+                        return;
+                    }
+                    if (newsItems.size() == 5){
+                        _newsList.setValue(newsItems);
+                        mNewsItems = newsItems;
+                        mPagerAdapter = new NewsPagerAdapter(mNewsItems, DashboardFragment.this::onNewsClick);
+                        mPagerAdapter.notifyDataSetChanged();
+                        mBinding.newsVpager2.setAdapter(mPagerAdapter);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Timber.d("database error %s", error.getMessage());
+            }
         });
+//        _newsList.setValue(newsItems);
     }
 
     @Override

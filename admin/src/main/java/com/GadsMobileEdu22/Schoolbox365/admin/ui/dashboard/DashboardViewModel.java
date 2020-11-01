@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import om.GadsMobileEdu22.Schoolbox365.core.data.News;
@@ -23,17 +24,19 @@ public class DashboardViewModel extends ViewModel {
     private final MutableLiveData<List<DashboardItem>> _dashList = new MutableLiveData<>();
     private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
     public LiveData<List<DashboardItem>> dashboardItems = _dashList;
-    public LiveData<List<NewsItem>> newsItems = _newsList;
+    public LiveData<List<NewsItem>> newsItems = _newsList;;
 
     public DashboardViewModel() {
         _dashList.setValue(addDashboardItems());
-        addNewsItems();
+//        addNewsItems();
     }
 
     private void addNewsItems() {
 //        TODO: Ensure news items get shown in viewpager.
         List<News> items = new ArrayList<>();
         List<NewsItem> newsItems = new ArrayList<>();
+        newsItems.add(new NewsItem(1, String.valueOf(R.drawable.ic_notifications),
+                "Loading News", ""));
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -44,6 +47,8 @@ public class DashboardViewModel extends ViewModel {
                     }
                 }
 
+                Collections.reverse(items);
+
                 for (News item : items){
                     NewsItem newsItem = new NewsItem(items.indexOf(item) + 1, item.getImage(), item.getTittle(),item.getDescription());
                     if (newsItems.size() <= 4){
@@ -52,7 +57,6 @@ public class DashboardViewModel extends ViewModel {
                         return;
                     }
                 }
-
                 _newsList.setValue(newsItems);
             }
 
@@ -61,6 +65,7 @@ public class DashboardViewModel extends ViewModel {
                 Timber.d("database error %s", error.getMessage());
             }
         });
+        _newsList.setValue(newsItems);
     }
 
     private ArrayList<DashboardItem> addDashboardItems() {
