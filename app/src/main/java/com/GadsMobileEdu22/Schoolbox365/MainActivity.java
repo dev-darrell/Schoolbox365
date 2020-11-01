@@ -26,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        binding.openAdminBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AdminDashBoardActivity.class);
-            startActivity(intent);
-        });
-
         binding.loginBtn.setOnClickListener(v -> {
             if (valid()){
                 viewModel.signIn(Objects.requireNonNull(binding.regNoEditTxt.getText()).toString(), Objects.requireNonNull(binding.passwordEditTxt.getText()).toString()

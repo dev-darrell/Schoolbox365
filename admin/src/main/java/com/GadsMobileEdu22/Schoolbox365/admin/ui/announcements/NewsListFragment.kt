@@ -21,12 +21,12 @@ class NewsListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.newsList.observe(viewLifecycleOwner, { newsList ->
             val adapter = NewsListAdapter()
-            adapter.submitList(newsList)
+            adapter.submitList(newsList.reversed())
             binding.recyclerNews.adapter = adapter
         })
 

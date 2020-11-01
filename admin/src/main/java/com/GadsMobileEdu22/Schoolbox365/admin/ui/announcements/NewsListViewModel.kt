@@ -15,7 +15,6 @@ import om.GadsMobileEdu22.Schoolbox365.core.data.News
 import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.util.*
-import java.util.concurrent.CountDownLatch
 
 class NewsListViewModel : ViewModel() {
     private val ref = FirebaseDatabase.getInstance().getReference("development/news")
@@ -47,50 +46,51 @@ class NewsListViewModel : ViewModel() {
 
     }
 
-    fun uploadNews(news: News){
+    private fun uploadNews(news: News, imageUrl:String){
+        val id = ref.push().key
+        news.id = id!!
+        news.image = imageUrl
 
-        fun finishUpload(imageUrl: String) {
-            val id = ref.push().key
-            news.id = id!!
-            news.image = imageUrl
-            ref.child(news.id).setValue(news).addOnCompleteListener {uploadTask ->
-                if (uploadTask.isSuccessful){
-                    _message.value = "News Posted"
-                }else{
-                    _message.value = "Something went wrong: ${uploadTask.exception?.localizedMessage}"
-                }
+        ref.child(news.id).setValue(news).addOnCompleteListener {uploadTask ->
+            if (uploadTask.isSuccessful){
+                _message.value = "News Posted"
+            }else{
+                _message.value = "Something went wrong: ${uploadTask.exception?.localizedMessage}"
             }
         }
-
-        fun uploadImageToFirebase(bitmap: Bitmap) {
-            _isUploadComplete.value = false
-            var imageUrl = ""
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(JPEG, 40, outputStream)
-            val data = outputStream.toByteArray()
-            val ref = FirebaseStorage.getInstance().getReference("images/news")
-            ref.putBytes(data).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    it.result?.storage?.downloadUrl?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            imageUrl = task.result.toString()
-                            finishUpload(imageUrl)
-                        }
-                        else {
-                            Timber.d("ImageUpload error : %s", task.exception?.localizedMessage)
-                        }
-                    }
-                }
-                else {
-                    _isUploadComplete.value = false
-                }
-            }
-        }
-
-        uploadImageToFirebase(imageBitmap)
-
     }
 
+     fun uploadImageAndNewsToFirebase( news: News) {
+        _isUploadComplete.value = false
+        var imageUrl = ""
+        val outputStream = ByteArrayOutputStream()
+        imageBitmap.compress(JPEG, 40, outputStream)
+        val data = outputStream.toByteArray()
+        val ref = FirebaseStorage.getInstance().getReference("news/images")
+        ref.putBytes(data).addOnCompleteListener {
+            if (it.isSuccessful) {
+                it.result?.storage?.downloadUrl?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        imageUrl = task.result.toString()
+                        uploadNews(news, imageUrl)
+                        _isUploadComplete.value = true
+                    }
+                    else {
+
+                        Timber.d("ImageUpload error : %s", task.exception?.localizedMessage)
+                        _message.value = task.exception?.localizedMessage
+                        _isUploadComplete.value = true
+                    }
+                }
+            }
+            else {
+                _message.value = it.exception?.localizedMessage
+                _isUploadComplete.value = true
+
+            }
+        }
+
+    }
 
     fun setImageBitmap(bitmap: Bitmap){
         imageBitmap = bitmap

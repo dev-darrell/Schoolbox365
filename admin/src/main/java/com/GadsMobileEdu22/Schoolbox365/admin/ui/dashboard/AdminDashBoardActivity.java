@@ -18,7 +18,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
 
 //    private List<NewsItem> newsItems;
 
-    private String name;
+    private  String name;
     private Bundle mDashboardBundle;
 
     @Override

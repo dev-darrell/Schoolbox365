@@ -10,12 +10,17 @@ import android.os.Bundle
 import android.provider.MediaStore.Images.Media
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.GadsMobileEdu22.Schoolbox365.admin.R
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentNewsAddBinding
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.DashboardFragment
 import com.bumptech.glide.Glide
 import om.GadsMobileEdu22.Schoolbox365.core.data.News
 
@@ -25,13 +30,12 @@ class NewsAddFragment : Fragment() {
     private lateinit var binding: FragmentNewsAddBinding
     private lateinit var mBitmap: Bitmap
     private lateinit var imagePath: String
-    private var imageIsChosen: Boolean = false
 
-    private val startActivityForResult = registerForActivityResult(StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
+    private val startActivityForResult =  registerForActivityResult(StartActivityForResult()){ result ->
+        if (result.resultCode == RESULT_OK){
             val uri: Uri = result.data?.data!!
             Toast.makeText(
-                    context,
+                    binding.root.context,
                     "Image Selected",
                     Toast.LENGTH_SHORT
             )
@@ -43,16 +47,18 @@ class NewsAddFragment : Fragment() {
                             ImageDecoder.createSource(requireActivity().contentResolver, uri)
                     mBitmap = ImageDecoder.decodeBitmap(source)
                     viewModel.setImageBitmap(mBitmap)
-                    imageIsChosen = true
                     Glide.with(requireContext()).load(uri).into(binding.imagePreview)
-                } else {
+                }
+                else {
                     mBitmap = Media.getBitmap(requireActivity().contentResolver, uri)
                     // Load image using Glide
+
                     viewModel.setImageBitmap(mBitmap)
                     Glide.with(requireContext()).load(mBitmap).into(binding.imagePreview)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+
             }
         }
 
@@ -70,24 +76,42 @@ class NewsAddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.materialButton.setOnClickListener {
-            if (imageIsChosen) {
-                val news = News(tittle = binding.etTittle.text.toString(),
-                        description = binding.etDesc.text.toString())
+        binding.btnSaveNews.setOnClickListener{
+            val news = News(tittle = binding.etTittle.text.toString(),
+                    description = binding.etDesc.text.toString())
 
-                viewModel.uploadNews(news)
-
-                Toast.makeText(context, viewModel.message.value, Toast.LENGTH_SHORT).show()
-                activity?.onBackPressed()
-            } else {
-                Toast.makeText(context, "Select cover image", Toast.LENGTH_LONG).show()
-            }
+            viewModel.uploadImageAndNewsToFirebase(news)
         }
+
         binding.imageAdd.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
 
             startActivityForResult.launch(intent)
         }
+
+        viewModel.isUploadComplete.observe(viewLifecycleOwner, { complete ->
+
+            if (complete) {
+
+                val name = arguments?.getString("NameString");
+                val bundle = bundleOf("Name" to name)
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container,
+                        DashboardFragment::class.java, bundle)?.commit()
+
+                binding.btnSaveNews.visibility = VISIBLE
+                binding.progressBar.stop()
+
+            }
+            else{
+                binding.btnSaveNews.visibility = GONE
+                binding.progressBar.start()
+            }
+
+        })
+
     }
+
+
+
 }
