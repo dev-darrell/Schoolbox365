@@ -26,7 +26,7 @@ public class    DashboardFragment extends Fragment
     private DashboardViewModel mViewModel;
     private FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
-    String name = getArguments().getString("Name");
+    String name;
 
     @Nullable
     @Override
@@ -34,6 +34,8 @@ public class    DashboardFragment extends Fragment
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentDashboardBinding.inflate(inflater);
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+        name = getArguments().getString("Name");
 
         return mBinding.getRoot();
     }
@@ -58,8 +60,10 @@ public class    DashboardFragment extends Fragment
         switch (position) {
             case 0:
 //              TODO: Open News/Announcements Activity or Fragment
+                Bundle bundle = new Bundle();
+                bundle.putString("NameString", name);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        NewsListFragment.class, null).commit();
+                        NewsListFragment.class, bundle).commit();
                 break;
             case 1:
 //              TODO: Open Users Activity/Fragment

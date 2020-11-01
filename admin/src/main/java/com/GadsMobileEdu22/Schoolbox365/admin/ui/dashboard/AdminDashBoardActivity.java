@@ -18,7 +18,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
 
 //    private List<NewsItem> newsItems;
 
-    private final String name = getIntent().getStringExtra("usersName");
+    private  String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +26,13 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         ActivityAdminDashBoardBinding binding = ActivityAdminDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+        name = getIntent().getStringExtra("usersName");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setTitle("welcome Mr " + name);
-
+        Bundle bundle = new Bundle();
+        bundle.putString("Name", name);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                DashboardFragment.class, null).commit();
+                DashboardFragment.class, bundle).commit();
         binding.bottomNavView.setSelectedItemId(R.id.nav_home);
         binding.bottomNavView.setOnNavigationItemSelectedListener(navListener);
     }
