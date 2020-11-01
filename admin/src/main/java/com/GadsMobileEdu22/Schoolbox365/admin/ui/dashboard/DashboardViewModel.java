@@ -31,6 +31,7 @@ public class DashboardViewModel extends ViewModel {
     }
 
     private void addNewsItems() {
+//        TODO: Ensure news items get shown in viewpager.
         List<News> items = new ArrayList<>();
         List<NewsItem> newsItems = new ArrayList<>();
         ref.addValueEventListener(new ValueEventListener() {
@@ -53,7 +54,6 @@ public class DashboardViewModel extends ViewModel {
                 }
 
                 _newsList.setValue(newsItems);
-
             }
 
             @Override
@@ -61,8 +61,6 @@ public class DashboardViewModel extends ViewModel {
                 Timber.d("database error %s", error.getMessage());
             }
         });
-
-
     }
 
     private ArrayList<DashboardItem> addDashboardItems() {

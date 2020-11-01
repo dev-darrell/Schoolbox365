@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (currentUser.getUserType().equals("admin")) {
                     Intent intent = new Intent(this, AdminDashBoardActivity.class);
+                    intent.putExtra("usersName", currentUser.getName());
                     startActivity(intent);
                 }
 

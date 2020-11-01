@@ -35,23 +35,29 @@ public class    DashboardFragment extends Fragment
         mBinding = FragmentDashboardBinding.inflate(inflater);
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
+        assert getArguments() != null;
         name = getArguments().getString("Name");
-
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String greet  = "Welcome Mr" + name;
+        String greet  = "Welcome Mr " + name;
         mBinding.welcomeUserTv.setText(greet);
         mBinding.dashboardRecyclervw.setLayoutManager(new GridLayoutManager(getContext(),
                 2));
 
-        mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems -> mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(dashboardItems, this)));
+        mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems ->
+                mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(dashboardItems, this)));
+
+//        TODO: Ensure news items get shown in viewpager.
+
         mViewModel.newsItems.observe(getViewLifecycleOwner(), newsItems -> {
             mNewsItems = newsItems;
-            mBinding.newsVpager2.setAdapter(new NewsPagerAdapter(newsItems, this));
+            NewsPagerAdapter pagerAdapter = new NewsPagerAdapter(newsItems, this);
+            pagerAdapter.notifyDataSetChanged();
+            mBinding.newsVpager2.setAdapter(pagerAdapter);
         });
     }
 

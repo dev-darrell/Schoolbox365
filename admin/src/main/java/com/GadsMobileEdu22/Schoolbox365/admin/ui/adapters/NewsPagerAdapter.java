@@ -21,7 +21,6 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
     private final List<NewsItem> newsItems;
     private final OnNewsClickListener onNewsClickListener;
     public NewsPagerAdapter( List<NewsItem> newsItems, OnNewsClickListener onNewsClickListener) {
-
         this.newsItems = newsItems;
         this.onNewsClickListener = onNewsClickListener;
     }
