@@ -14,6 +14,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
@@ -42,7 +45,7 @@ public class    DashboardFragment extends Fragment
     private DashboardViewModel mViewModel;
     private FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
-    String name;
+    String name = "";
     private final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("development/news");
     private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
     public LiveData<List<NewsItem>> newsItems = _newsList;;
@@ -56,8 +59,9 @@ public class    DashboardFragment extends Fragment
         mBinding = FragmentDashboardBinding.inflate(inflater);
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        assert getArguments() != null;
-        name = getArguments().getString("Name");
+        if(getArguments() != null){
+            name = getArguments().getString("Name");
+        }
         return mBinding.getRoot();
     }
 
@@ -71,6 +75,7 @@ public class    DashboardFragment extends Fragment
 
         mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems ->
                 mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(dashboardItems, this)));
+
 
 //        TODO: Ensure news items get shown in viewpager.
 
@@ -88,8 +93,7 @@ public class    DashboardFragment extends Fragment
     private void getNewsFromDb() {
         List<News> items = new ArrayList<>();
         List<NewsItem> newsItems = new ArrayList<>();
-//        newsItems.add(new NewsItem(1, String.valueOf(R.drawable.ic_notifications),
-//                "Loading News", ""));
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -109,7 +113,7 @@ public class    DashboardFragment extends Fragment
                     }else {
                         return;
                     }
-                    if (newsItems.size() == 5){
+                    if (newsItems.size() > 0){
                         _newsList.setValue(newsItems);
                         mNewsItems = newsItems;
                         mPagerAdapter = new NewsPagerAdapter(mNewsItems, DashboardFragment.this::onNewsClick);
@@ -134,6 +138,8 @@ public class    DashboardFragment extends Fragment
 //              TODO: Open News/Announcements Activity or Fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("NameString", name);
+
+//                Navigation.findNavController(mBinding.getRoot()).navigate( );
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         NewsListFragment.class, bundle).commit();
                 break;

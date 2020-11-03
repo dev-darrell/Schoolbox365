@@ -1,5 +1,6 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.DashboardNewsItemBinding;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.NewsItem;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -61,7 +66,20 @@ public class NewsPagerAdapter extends RecyclerView.Adapter<NewsPagerAdapter.MyPa
 
         public void bindData(int position) {
             NewsItem currentItem = newsItems.get(position);
-            Glide.with(itemView.getContext()).load(currentItem.getNewsImage()).into(newsIllustration);
+
+            RequestOptions options = new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .centerCrop()
+                    .priority(Priority.HIGH)
+                    .format(DecodeFormat.PREFER_RGB_565);
+
+            Glide.with(itemView.getContext())
+                    .asBitmap()
+                    .load(currentItem.getNewsImage())
+                    .centerInside()
+                    .apply(options)
+                    .into(newsIllustration);
+
             newsHeading.setText(currentItem.getHeading());
             mBinding.dotIndicator1.setImageResource(currentItem.getDot1());
             mBinding.dotIndicator2.setImageResource(currentItem.getDot2());

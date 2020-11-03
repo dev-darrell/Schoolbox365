@@ -66,7 +66,8 @@ class NewsListViewModel : ViewModel() {
         val outputStream = ByteArrayOutputStream()
         imageBitmap.compress(JPEG, 40, outputStream)
         val data = outputStream.toByteArray()
-        val ref = FirebaseStorage.getInstance().getReference("news/images")
+        val ref = FirebaseStorage.getInstance().getReference("news/images/image"
+                + UUID.randomUUID())
         ref.putBytes(data).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result?.storage?.downloadUrl?.addOnCompleteListener { task ->

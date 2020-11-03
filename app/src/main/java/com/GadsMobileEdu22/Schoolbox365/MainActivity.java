@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
                     binding.loginBtn.setVisibility(View.GONE);
                     binding.progressBar.start();
                     break;
-                case Done:
-                    binding.loginBtn.setVisibility(View.VISIBLE);
-                    binding.progressBar.stop();
-                    break;
+//       Moved this code to just before the dashboard opens to improve experience.
+//                case Done:
+//                    binding.loginBtn.setVisibility(View.VISIBLE);
+//                    binding.progressBar.stop();
+//                    break;
                 case AuthError:
                     binding.progressBar.stop();
                     binding.loginBtn.setVisibility(View.VISIBLE);
@@ -63,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private void navigate() {
         viewModel.getCurrentUser().observe(this, currentUser ->{
             if (currentUser != null) {
+
+                binding.loginBtn.setVisibility(View.VISIBLE);
+                binding.progressBar.stop();
+
                 if (currentUser.getUserType().equals("Student")) {
 
                     Snackbar.make(binding.getRoot(),"Welcome " + currentUser.getName(),Snackbar.LENGTH_LONG).show();
@@ -78,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("usersName", currentUser.getName());
                     startActivity(intent);
                 }
-
+                finish();
             }
         });
     }

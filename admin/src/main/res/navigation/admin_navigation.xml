@@ -3,11 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_navigation"
-    app:startDestination="@id/registerNewUserFragment">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
         android:id="@+id/registerNewUserFragment"
         android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.auth.RegisterNewUserFragment"
         android:label="register_new_user_fragment"
         tools:layout="@layout/register_new_user_fragment" />
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsListFragment"
+        android:label="news_list_fragment"
+        tools:layout="@layout/news_list_fragment" >
+        <action
+            android:id="@+id/action_newsListFragment_to_newsAddFragment"
+            app:destination="@id/newsAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsAddFragment"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsAddFragment"
+        android:label="fragment_news_add"
+        tools:layout="@layout/fragment_news_add" >
+        <action
+            android:id="@+id/action_newsAddFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <activity
+        android:id="@+id/adminDashBoardActivity3"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.AdminDashBoardActivity"
+        android:label="activity_admin_dash_board"
+        tools:layout="@layout/activity_admin_dash_board" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_registerNewUserFragment"
+            app:destination="@id/registerNewUserFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_adminDashBoardActivity3"
+            app:destination="@id/adminDashBoardActivity3"
+            app:popUpTo="@id/admin_navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name=" "
+            app:argType="string"
+            android:defaultValue=" "/>
+    </fragment>
 </navigation>

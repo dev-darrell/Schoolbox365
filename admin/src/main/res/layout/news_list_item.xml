@@ -18,13 +18,13 @@
         <ImageView
             android:id="@+id/imageNews"
             android:layout_width="160dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/news_image"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_notifications"
-            android:contentDescription="@string/news_image" />
+            app:srcCompat="@drawable/ic_notifications" />
 
         <TextView
             android:id="@+id/textTittle"
