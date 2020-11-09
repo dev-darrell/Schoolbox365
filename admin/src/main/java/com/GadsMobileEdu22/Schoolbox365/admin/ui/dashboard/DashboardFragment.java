@@ -1,11 +1,9 @@
 package com.GadsMobileEdu22.Schoolbox365.admin.ui.dashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,15 +13,16 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.FragmentDashboardBinding;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.DashboardRecyclerViewAdapter;
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.NewsPagerAdapter;
-import com.GadsMobileEdu22.Schoolbox365.admin.ui.announcements.NewsListFragment;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.menu.MenuFragmentDirections;
+import com.GadsMobileEdu22.Schoolbox365.admin.ui.search.SearchFragmentDirections;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,13 +41,49 @@ public class    DashboardFragment extends Fragment
         NewsPagerAdapter.OnNewsClickListener {
 
     private DashboardViewModel mViewModel;
-    private FragmentDashboardBinding mBinding;
+    private static FragmentDashboardBinding mBinding;
     private List<NewsItem> mNewsItems;
-    String name = "";
+    private String name = "";
     private final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("development/news");
     private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
     public LiveData<List<NewsItem>> newsItems = _newsList;;
     private NewsPagerAdapter mPagerAdapter;
+    private static NavController mNavController;
+
+    public static void openHome() {
+        if (mNavController.getCurrentDestination().getId() != R.id.dashboardFragment) {
+            mNavController.navigate(R.id.dashboardFragment);
+        }
+    }
+
+    public static void openSearch() {
+        if (mNavController.getCurrentDestination().getId() != R.id.searchFragment) {
+            if (mNavController.getCurrentDestination().getId() == R.id.dashboardFragment) {
+                NavDirections directions = DashboardFragmentDirections.actionDashboardFragmentToSearchFragment();
+                mNavController.navigate(directions);
+            } else if (mNavController.getCurrentDestination().getId() == R.id.menuFragment){
+                NavDirections directions = MenuFragmentDirections.actionMenuFragmentToSearchFragment();
+                mNavController.navigate(directions);
+            }
+        }
+    }
+
+    public static void openMenu() {
+        if (mNavController.getCurrentDestination().getId() != R.id.menuFragment) {
+            if (mNavController.getCurrentDestination().getId() == R.id.dashboardFragment) {
+                NavDirections directions = DashboardFragmentDirections.actionDashboardFragmentToMenuFragment();
+                mNavController.navigate(directions);
+            } else if (mNavController.getCurrentDestination().getId() == R.id.searchFragment){
+                NavDirections directions = SearchFragmentDirections.actionSearchFragmentToMenuFragment();
+                mNavController.navigate(directions);
+            }
+        }
+    }
+
+    public static void openNewUser() {
+        NavDirections directions = DashboardFragmentDirections.actionDashboardFragmentToRegisterNewUserFragment();
+        mNavController.navigate(directions);
+    }
 
 
     @Nullable
@@ -57,37 +91,38 @@ public class    DashboardFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentDashboardBinding.inflate(inflater);
+
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        if(getArguments() != null){
-            name = getArguments().getString("Name");
-        }
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String greet  = "Welcome Mr " + name;
-        mBinding.welcomeUserTv.setText(greet);
+
         mBinding.dashboardRecyclervw.setLayoutManager(new GridLayoutManager(getContext(),
                 2));
 
         mViewModel.dashboardItems.observe(getViewLifecycleOwner(), dashboardItems ->
                 mBinding.dashboardRecyclervw.setAdapter(new DashboardRecyclerViewAdapter(dashboardItems, this)));
 
-
-//        TODO: Ensure news items get shown in viewpager.
+        mNavController = Navigation.findNavController(view);
 
         getNewsFromDb();
+    }
 
-//        this.newsItems.observe(getViewLifecycleOwner(), newsItems1 -> {
-//            Collections.reverse(mNewsItems);
-////            Timber.d("list of view pager %s", mNewsItems.get(0).toString());
-//            mPagerAdapter = new NewsPagerAdapter(mNewsItems, this);
-//            mPagerAdapter.notifyDataSetChanged();
-//            mBinding.newsVpager2.setAdapter(mPagerAdapter);
-//        });
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel.getUserName().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                name = s;
+            }
+        });
+        String greet  = "Welcome Mr " + name;
+        mBinding.welcomeUserTv.setText(greet);
     }
 
     private void getNewsFromDb() {
@@ -128,20 +163,17 @@ public class    DashboardFragment extends Fragment
                 Timber.d("database error %s", error.getMessage());
             }
         });
-//        _newsList.setValue(newsItems);
     }
 
     @Override
     public void onDashboardClick(int position) {
         switch (position) {
             case 0:
-//              TODO: Open News/Announcements Activity or Fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("NameString", name);
 
-//                Navigation.findNavController(mBinding.getRoot()).navigate( );
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        NewsListFragment.class, bundle).commit();
+                NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToNewsListFragment();
+                mNavController.navigate(action);
                 break;
             case 1:
 //              TODO: Open Users Activity/Fragment

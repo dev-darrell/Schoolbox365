@@ -23,12 +23,22 @@ public class DashboardViewModel extends ViewModel {
     private final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("development/news");
     private final MutableLiveData<List<DashboardItem>> _dashList = new MutableLiveData<>();
     private final MutableLiveData<List<NewsItem>> _newsList = new MutableLiveData<>();
+    private final MutableLiveData<String> _userName = new MutableLiveData<>();
     public LiveData<List<DashboardItem>> dashboardItems = _dashList;
-    public LiveData<List<NewsItem>> newsItems = _newsList;;
+    public LiveData<List<NewsItem>> newsItems = _newsList;
+    private LiveData<String> userName = _userName;
 
     public DashboardViewModel() {
         _dashList.setValue(addDashboardItems());
 //        addNewsItems();
+    }
+
+    public void setUserName(String userName){
+        _userName.setValue(userName);
+    }
+
+    public LiveData<String> getUserName() {
+        return userName;
     }
 
     private void addNewsItems() {

@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.GadsMobileEdu22.Schoolbox365.admin.R
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.NewsListFragmentBinding
 import com.GadsMobileEdu22.Schoolbox365.admin.ui.adapters.NewsListAdapter
 
@@ -32,8 +33,11 @@ class NewsListFragment : Fragment() {
 
         binding.floatingActionButton.setOnClickListener {
             //              TODO: Open News/Announcements Activity or Fragment
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    NewsAddFragment::class.java, null).commit()
+            var direction: NavDirections = NewsListFragmentDirections.actionNewsListFragmentToNewsAddFragment()
+            findNavController().navigate(direction)
+
+//            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+//                    NewsAddFragment::class.java, null).commit()
         }
 
     }

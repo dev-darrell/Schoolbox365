@@ -6,12 +6,10 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.GadsMobileEdu22.Schoolbox365.admin.R;
 import com.GadsMobileEdu22.Schoolbox365.admin.databinding.ActivityAdminDashBoardBinding;
-import com.GadsMobileEdu22.Schoolbox365.admin.ui.auth.RegisterNewUserFragment;
-import com.GadsMobileEdu22.Schoolbox365.admin.ui.menu.MenuFragment;
-import com.GadsMobileEdu22.Schoolbox365.admin.ui.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminDashBoardActivity extends AppCompatActivity {
@@ -19,46 +17,48 @@ public class AdminDashBoardActivity extends AppCompatActivity {
 //    private List<NewsItem> newsItems;
 
     private  String name;
-    private Bundle mDashboardBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityAdminDashBoardBinding binding = ActivityAdminDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        DashboardViewModel viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+//        TODO: Work on passing username to Dashboard Fragment using SafeArgs
 
         if (getIntent().hasExtra("usersName")) {
             name = getIntent().getStringExtra("usersName");
         } else {
             name = "";
         }
+        viewModel.setUserName(name);
+
+        binding.toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.background_color_light));
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setTitle("Welcome Mr " + name);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+//        getSupportActionBar().setTitle("Welcome Mr " + name);
 
-
-        mDashboardBundle = new Bundle();
-        mDashboardBundle.putString("Name", name);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                DashboardFragment.class, mDashboardBundle).commit();
         binding.bottomNavView.setSelectedItemId(R.id.nav_home);
         binding.bottomNavView.setOnNavigationItemSelectedListener(navListener);
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
         if (item.getItemId() == R.id.nav_search) {
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.fragment_container, SearchFragment.class, null)
-                    .commit();
+            DashboardFragment.openSearch();
+//            getSupportFragmentManager().beginTransaction().replace(
+//                    R.id.nav_host_fragment, SearchFragment.class, null)
+//                    .commit();
         } else if (item.getItemId() == R.id.nav_home) {
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, DashboardFragment.class, mDashboardBundle)
-                        .commit();
+            DashboardFragment.openHome();
+//                getSupportFragmentManager().beginTransaction().replace(
+//                        R.id.nav_host_fragment, DashboardFragment.class, mDashboardBundle)
+//                        .commit();
         } else {
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.fragment_container, MenuFragment.class, null)
-                    .commit();
+            DashboardFragment.openMenu();
+//            getSupportFragmentManager().beginTransaction().replace(
+//                    R.id.nav_host_fragment, MenuFragment.class, null)
+//                    .commit();
         }
         return true;
     };
@@ -72,9 +72,10 @@ public class AdminDashBoardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.select_course_menu_item){
-           getSupportFragmentManager().beginTransaction().replace(
-                    R.id.fragment_container, RegisterNewUserFragment.class, null)
-                    .commit();
+            DashboardFragment.openNewUser();
+//           getSupportFragmentManager().beginTransaction().replace(
+//                    R.id.nav_host_fragment, RegisterNewUserFragment.class, null)
+//                    .commit();
            return true;
         }
         return super.onOptionsItemSelected(item);

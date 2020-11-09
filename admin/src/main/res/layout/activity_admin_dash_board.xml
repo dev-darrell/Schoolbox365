@@ -28,7 +28,8 @@
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
                 android:contentDescription="@string/user_profile_image"
-                android:src="@drawable/onboard_admin" />
+                android:src="@drawable/ic_person_outline"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/toolbar_welcome_user_tv"
@@ -46,8 +47,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -66,5 +68,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

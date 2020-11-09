@@ -96,7 +96,7 @@ class NewsAddFragment : Fragment() {
 
                 val name = arguments?.getString("NameString");
                 val bundle = bundleOf("Name" to name)
-                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container,
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.nav_host_fragment,
                         DashboardFragment::class.java, bundle)?.commit()
 
                 binding.btnSaveNews.visibility = VISIBLE

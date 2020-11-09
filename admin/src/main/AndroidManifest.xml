@@ -3,7 +3,7 @@
     package="com.GadsMobileEdu22.Schoolbox365.admin">
 
     <application>
-        <activity android:name=".ui.dashboard.AdminDashBoardActivity"></activity>
+        <activity android:name=".ui.dashboard.AdminDashBoardActivity" />
     </application>
 
 </manifest>
